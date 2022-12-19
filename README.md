@@ -27,3 +27,11 @@ To run the playbooks you have to run the following command:
 ```bash
 ansible-playbook playbook.yml
 ```
+
+## Run the playbooks in the right order
+
+1. install_packages.yml - installs all the packages needed for the other playbooks
+2. install_npm.yml - installs npm and nodejs
+3. install_docker.yml - installs docker and docker-compose
+4. install_portainer.yml - installs portainer to manage all docker container on the server
+5. install_proxy.yml - installs nginx as a reverse proxy to route all traffic to the right container

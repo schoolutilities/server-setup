@@ -1,0 +1,18 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: "Install nodejs"
+      apt:
+        update_cache: yes
+        name: nodejs
+        state: present
+    - name: "Add nodejs apt key"
+      apt_key:
+        url: https://deb.nodesource.com/gpgkey/nodesource.gpg.key
+        state: present
+
+    - name: "Add nodejs 18.x ppa for apt repo"
+      apt_repository:
+        repo: deb https://deb.nodesource.com/node_18.x bionic main
+        update_cache: yes
+

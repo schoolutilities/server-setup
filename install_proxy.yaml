@@ -1,0 +1,21 @@
+- hosts: all
+  become: yes
+  tasks:
+    - name: Create a network for proxy manager
+      community.docker.docker_network:
+        name: "nginx-proxy-manager-network"
+    - name: Nginx Proxy Manager deploy
+      community.docker.docker_container:
+        name: nginx_proxy
+        image: jc21/nginx-proxy-manager:latest
+        ports:
+          - "80:80"
+          - "81:81"
+          - "443:443"
+        volumes:
+          - "/data:/data"
+          - "/letsencrypt:/etc/letsencrypt"
+        restart_policy: unless-stopped
+        networks:
+          - name: "nginx-proxy-manager-network"
+        network_mode: "nginx-proxy-manager-network"

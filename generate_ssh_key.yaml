@@ -1,0 +1,11 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: generate ssh key
+      shell: ssh-keygen -t rsa -b 4096 -C "ansible@ansible" -f /root/.ssh/id_rsa -N ""
+      register: ssh_keygen
+      changed_when: false
+    - name: output private key
+      debug:
+        msg: "{{ ssh_keygen.stdout }}"
+      changed_when: false

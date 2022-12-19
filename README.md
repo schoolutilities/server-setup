@@ -28,7 +28,7 @@ To run the playbooks you have to run the following command:
 ansible-playbook playbook.yml
 ```
 
-## Run the playbooks in the right order
+### Run the playbooks in the right order
 
 1. install_packages.yml - installs all the packages needed for the other playbooks
 2. install_npm.yml - installs npm and nodejs
